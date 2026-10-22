@@ -6,10 +6,11 @@
 | DESK-002 | The desktop app shall let users do everything that can be done with an OpenDAP, from casual use to advanced use. | must | Confirmed |
 | DESK-003 | The app shall serve casual users first and keep advanced features available without imposing them. | must | Draft |
 | DESK-004 | The app and the `opendap` CLI shall share one core and one domain model (TK-009), so a feature exists once and both expose it. | must | Draft |
-| DESK-005 | OpenDAP Desktop shall run first on UNIX/POSIX hosts, tested on macOS, like the rest of the project, and should also support Windows. | must | Confirmed |
-| DESK-006 | OpenDAP Desktop shall include a per-user background service on the host, started at login without administrator rights, for work that must happen while the app is closed: device detection, library and playlist sync, backups, update downloads, notifications and persistent connections. | must | Draft |
-| DESK-007 | The background service shall be another interface over the same core as the CLI and the app (Rust crate architecture). The app and the CLI use it when it runs; the CLI keeps working without it. | must | Draft |
-| DESK-008 | The background service shall integrate with each host's standard service manager and device access (launchd on macOS, systemd user units and udev rules on Linux; Windows equivalents if Windows is supported), and stay light on CPU, memory and battery when idle. | must | Draft |
+| DESK-005 | OpenDAP Desktop shall run on UNIX/POSIX hosts, tested on macOS, like the rest of the project. | must | Confirmed |
+| DESK-006 | OpenDAP Desktop shall include a per-user background service on the host, started at login without administrator rights, for work that must happen while the app is closed: device detection, library and playlist sync, backups, update downloads, notifications and persistent connections. | should | Draft |
+| DESK-007 | The background service shall be another interface over the same core as the CLI and the app (Rust crate architecture). The app and the CLI use it when it runs; the CLI keeps working without it. | should | Draft |
+| DESK-008 | The background service shall integrate with each host's standard service manager and device access (launchd on macOS, systemd user units and udev rules on Linux; Windows equivalents if Windows is supported), and stay light on CPU, memory and battery when idle. | should | Draft |
+| DESK-009 | OpenDAP Desktop should also support Windows (split from DESK-005). | should | Confirmed |
 
 ## Context
 
