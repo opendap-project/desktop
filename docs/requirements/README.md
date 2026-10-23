@@ -11,9 +11,11 @@
 | DESK-007 | The background service shall be another interface over the same core as the CLI and the app (Rust crate architecture). The app and the CLI use it when it runs; the CLI keeps working without it. | should | Draft |
 | DESK-008 | The background service shall integrate with each host's standard service manager and device access (launchd on macOS, systemd user units and udev rules on Linux; Windows equivalents if Windows is supported), and stay light on CPU, memory and battery when idle. | should | Draft |
 | DESK-009 | OpenDAP Desktop should also support Windows (split from DESK-005). | should | Confirmed |
+| DESK-010 | OpenDAP Desktop should offer optional transcoding per device when syncing, to fit more music, without ever changing the library. | should | Confirmed |
 
 ## Context
 
+- DESK-010 (maintainers, 2026-10-23), from the [desktop companion research](../research/2026-10-desktop-companion.md) §4.1: whatever is useful may be offered. Off by default; lossless stays lossless unless the listener chooses.
 - DESK-006 to DESK-008 (2026-10-22): proposed by Claude after the maintainers asked whether the desktop app needs background services; Draft until confirmed. The MCP server of the CLI spec (`mcp serve`) can run inside this service.
 - DESK-003 and DESK-004 (2026-10-22) follow from the request ("from the casual user to the advanced one") and from TK-009 (every toolkit tool shares concepts, conventions and one domain model), applying the brand rule "complexity available, never imposed".
 - DESK-005 (maintainers, 2026-10-22): UNIX/POSIX is the main target, tested on macOS (as TK-010, TK-011); Windows is desirable for casual users, so the app avoids POSIX-only assumptions in its core and keeps Windows support possible.

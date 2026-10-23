@@ -14,12 +14,7 @@
 1. **The desktop keeps; the T1 plays.** The desktop is where the collection is curated, acquired, backed up and configured in depth. The T1 is complete on its own and never needs the desktop to play (E1).
 2. **One library model, shared.** The desktop and the CLI share one core and one domain model (DESK-004), and the T1 holds a replica of the same model. A playlist, a rating, a play, a profile is the same object everywhere.
 3. **Files are the library.** The listener's audio files, in folders they choose, are the source of truth. The desktop's database indexes and enriches them, and writes tags only when the listener asks. Purchased files are imported like any other, with their provenance.
-4. **Identity is open.** Items are keyed by open identifiers:
-   - MusicBrainz first;
-   - then ISRC and UPC;
-   - then an AcoustID fingerprint for local files.
-
-   Provider identifiers are kept only as links. Playlists hold the identifiers, so they survive files moving and providers leaving.
+4. **Identity is open.** Items are keyed by open identifiers found in the files' tags or added by the listener (a MusicBrainz ID, an ISRC, a UPC). Lookups against MusicBrainz, AcoustID or any other service are providers the listener enables, never the core (SYS-045). Provider identifiers are kept only as links. Playlists hold the identifiers, so they survive files moving and providers leaving.
 5. **Providers are optional adapters.** Each one declares what it can do: search, hand off to its checkout, download, list purchases, metadata, scrobbling, playlist import. The listener enables the ones they want; none is a default and none is privileged. With no provider at all, nothing is lost.
 6. **Two-way sync with no subscription and no destructive default.**
    - Selections go to the T1 by rule, always with a preview.
@@ -89,7 +84,7 @@
 | Object | What it is | Identity | Lives |
 |---|---|---|---|
 | **File** | An audio file in a folder the listener chose | Content hash and path | On disk, the listener's |
-| **Recording, release, work, artist** | What the file is | MusicBrainz ID; ISRC and UPC as secondary; AcoustID fingerprint for files | In the library model |
+| **Recording, release, work, artist** | What the file is | Identifiers from tags (MusicBrainz ID; ISRC and UPC as secondary); a fingerprint if a provider adds one | In the library model |
 | **Edition** | A version of a release (remaster, format, resolution) | Release ID; grouping by release group | In the model; the listener chooses the primary |
 | **Provenance** | Where a file came from | Provider, order, date, original format | Metadata on the file entry |
 | **Playlist** | An ordered list of entries | Its own ID; entries hold identifiers plus title, artist and length | Owner's state; exported as JSPF and M3U8 |
@@ -101,13 +96,13 @@ The listener's **personal state** (playlists, events, profiles, selections) is s
 
 ### 3.2 Identification
 
-A ladder, as Music Assistant and Roon show, with a manual fallback at the end:
+A ladder, as Music Assistant and Roon show, with a manual fallback at the end. The core uses only what is in the files and the listener's own data. Every lookup against an outside service is an opt-in provider (SYS-045):
 
-1. A MusicBrainz ID in the file's tags.
-2. An ISRC or UPC from tags or provider metadata, checked against the length.
-3. An AcoustID fingerprint of the file.
-4. Fuzzy title, artist, album and length.
-5. A manual link by the listener.
+1. A MusicBrainz ID in the file's tags (core).
+2. An ISRC or UPC in the tags, checked against the length (core).
+3. Fuzzy title, artist, album and length within the library (core).
+4. Lookups through enabled metadata providers: MusicBrainz, an AcoustID fingerprint, Discogs, a store's metadata (providers).
+5. A manual link by the listener (core).
 
 Uncertain matches are queued for review, never applied silently (E6).
 
@@ -180,7 +175,7 @@ A provider is an optional adapter behind a port of the application core (the [Ru
 3. **No default, no privilege.** The listener enables providers; results from several providers appear side by side, ordered by the listener's criteria (format, price, provider), never by commercial arrangement. Any commercial relationship with a provider is disclosed where it applies (E18).
 4. **Back up what was bought.** Since re-downloads are not guaranteed, purchases are included in the desktop's backups by default.
 5. **The first step needs no contract.** A provider that only searches, hands off to checkout and imports the downloaded files works with any store's site, as Roon imports Qobuz purchases. Deeper integration (purchases list, streaming) depends on each provider's terms.
-6. **Licences of data are respected.** Metadata services with non-commercial terms (MusicBrainz supplementary data, AcoustID, Last.fm) are used within their terms or with an agreement (ecosystem research §13.1).
+6. **Every third party is a provider** (SYS-045): metadata services (MusicBrainz, AcoustID, Discogs), stores, streaming and scrobbling are all opt-in providers, each following its service's terms. The core works with none.
 
 ## 6. Everything else the desktop does
 
@@ -230,5 +225,6 @@ The CLI exposes every one of these from the same core (DESK-004), for automation
 1. Measured transfer speeds over USB and Wi-Fi on the T1 (no DAP publishes them; reviewers' opinions only).
 2. The retention window for recoverable deletion.
 3. Which writing mode is the default for tags (in place, or library only).
-4. The metadata licence questions above, for the Commercial edition.
-5. Candidate DESK requirements will be drafted from §3 to §6 once the maintainers review this report.
+4. Candidate DESK requirements will be drafted from §3 to §6 once the maintainers review this report.
+
+Decided on 2026-10-23: transcoding per device is offered (DESK-010); every third party is an opt-in provider (SYS-045); the household and its members are in the model (SYS-043, SYS-044); playback syncs in real time across devices (SYS-042).
