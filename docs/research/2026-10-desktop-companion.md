@@ -6,7 +6,7 @@
 - **Companion documents:**
   - the [ecosystem experience research](https://github.com/opendap-project/t1/blob/main/docs/research/ux/2026-10-ecosystem-experience.md) in `t1`: principles E1 to E20, personas, jobs, journeys and the responsibility matrix this report details for the desktop;
   - the [protocol research](https://github.com/opendap-project/system/blob/main/docs/research/2026-10-device-ecosystem-protocol.md) in `system`: how devices meet and talk.
-- **Inputs:** DESK-001 to DESK-009, TK-009, the [CLI spec](https://github.com/opendap-project/toolkit-cli/blob/main/docs/specs/opendap-cli.md), the [audio profiles spec](https://github.com/opendap-project/t1/blob/main/docs/specs/audio-profiles.md).
+- **Inputs:** DESK-001 to DESK-009, TK-009, the [CLI spec](https://github.com/opendap-project/toolkit-cli/blob/main/docs/specs/opendap-cli.md), the [audio profiles spec](https://github.com/opendap-project/system/blob/main/docs/specs/audio-profiles.md).
 - **Source labels:** **[doc]** official documentation; **[review]** press or reviewer; **[user]** a forum report, not a measured fact. **UNVERIFIED** marks what was not checked against a primary source.
 
 ## 1. Summary
