@@ -3,6 +3,7 @@
 | Folder | Contents |
 |---|---|
 | [`requirements/`](requirements/) | What this project must achieve. Each requirement has an ID, a priority (**must** / **should**) and a status. |
+| [`research/`](research/) | Research reports: benchmarks and analysis that feed requirements. Nothing in them is decided. |
 
 Architecture Decision Records go in `adr/` once decisions are taken.
 
